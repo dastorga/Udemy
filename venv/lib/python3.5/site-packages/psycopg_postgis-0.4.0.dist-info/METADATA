@@ -1,0 +1,21 @@
+Metadata-Version: 2.0
+Name: psycopg-postgis
+Version: 0.4.0
+Summary: Deprecated. Use postgis package instead.
+Home-page: https://github.com/yohanboniface/python-postgis
+Author: Yohan Boniface
+Author-email: yohan.boniface@data.gouv.fr
+License: WTFPL
+Keywords: psycopg postgis gis asyncpg
+Platform: UNKNOWN
+Classifier: Development Status :: 7 - Inactive
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: postgis
+
+Deprecated. Use postgis package instead.
+
+
