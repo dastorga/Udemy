@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework import viewsets
+from django.contrib.auth import authenticate
 
 from .models import Producto, Categoria, SubCategoria
-from .serializers import ProductoSerializer, CategoriaSerializer, SubCategoriaSerializer
+from .serializers import ProductoSerializer, CategoriaSerializer, SubCategoriaSerializer, UserSerializer
 
 from rest_framework import generics
 
@@ -78,4 +79,33 @@ class SubCategoriaAdd(APIView):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+
+# importar el UserSerializer
+class UserCreate(generics.CreateAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = UserSerializer
+
+
+class LoginView(APIView):
+    permission_classes = ()
+
+    def post(self, request, ):
+        username = request.data.get("username")
+        password = request.data.get("password")
+        user = authenticate(username=username, password=password)
+        if user:
+            return Response({"token": user.auth_token.key})
+        else:
+            return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
 
