@@ -1,1 +1,9 @@
-venv
+# Environments
+/venv
+venv/
+.venv
+
+# Setting
+/Udemy/settings.py
+
+.cache

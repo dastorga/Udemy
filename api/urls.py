@@ -4,9 +4,14 @@ from api.apiviews import ProductoDetalle, ProductoList, \
     CategoriaList, SubCategoriaList, CategoriaDetalle, \
     SubCategoriaAdd, ProductoViewSet, UserCreate, LoginView
 from rest_framework.authtoken import views
+from rest_framework_swagger.views import get_swagger_view
+from rest_framework.documentation import include_docs_urls
+
 
 router = DefaultRouter()
 router.register('v2/productos', ProductoViewSet, base_name='productos')
+
+schema_view = get_swagger_view(title='Rest Full API')
 
 urlpatterns = [
     path('v1/productos/', ProductoList.as_view(), name='producto_list'),
@@ -19,6 +24,8 @@ urlpatterns = [
     path('v3/usuarios/', UserCreate.as_view(), name='usuario_crear'),
     path("v4/login/", LoginView.as_view(), name="login"),
     path("v3/login-drf/", views.obtain_auth_token, name="login_drf"),
+    path('swagger-docs/', schema_view),
+    path('coreapi-docs/', include_docs_urls(title="Rest Api Documentation")),
 ]
 
 urlpatterns += router.urls
