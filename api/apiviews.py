@@ -10,6 +10,9 @@ from .models import Producto, Categoria, SubCategoria
 from .serializers import ProductoSerializer, CategoriaSerializer, SubCategoriaSerializer, UserSerializer
 
 from rest_framework import generics
+from .permissions import IsOwner
+from rest_framework.permissions import IsAuthenticated
+
 
 # class ProductoList(APIView):
 #     def get(self, request):
@@ -79,6 +82,7 @@ class SubCategoriaAdd(APIView):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    permission_classes = ([IsAuthenticated, IsOwner])
 
 
 # importar el UserSerializer
