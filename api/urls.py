@@ -6,6 +6,7 @@ from api.apiviews import ProductoDetalle, ProductoList, \
 from rest_framework.authtoken import views
 from rest_framework_swagger.views import get_swagger_view
 from rest_framework.documentation import include_docs_urls
+from rest_framework_simplejwt import views as jwt_views
 
 
 router = DefaultRouter()
@@ -24,8 +25,13 @@ urlpatterns = [
     path('v3/usuarios/', UserCreate.as_view(), name='usuario_crear'),
     path("v4/login/", LoginView.as_view(), name="login"),
     path("v3/login-drf/", views.obtain_auth_token, name="login_drf"),
+
     path('swagger-docs/', schema_view),
     path('coreapi-docs/', include_docs_urls(title="Rest Api Documentation")),
+
+    path('v5/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain'),
+    path('v5/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
 
 urlpatterns += router.urls
